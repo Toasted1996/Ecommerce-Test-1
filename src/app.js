@@ -4,9 +4,11 @@ import authRoutes from "./routes/auth.routes.js"; // Importando las rutas de aut
 import orderRoute from  "./routes/order.routes.js"
 import productRoute from "./routes/product.route.js"
 import cookieParser from "cookie-parser"
+import cors from 'cors'
 
 const app =express() //Creando instancia de express
 
+app.use(cors())
 app.use(morgan('dev')); //Iniciando morgan para registrar las peticiones HTTP
 app.use(express.json()); //Permitiendo que express entienda el formato JSON en las peticiones
 app.use(cookieParser()) // Usando la biblioteca cookieParser

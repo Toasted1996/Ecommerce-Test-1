@@ -9,6 +9,9 @@ export const register = async (req, res) => { //Async para manejar promesas y ev
     const {username, email, password} = req.body
         // Ingresa al hash de la contraseña en un try catch para manejar errores
     try{
+        const userFound = await User.findOne({email})
+        if(userFound)
+            return res.status(400).json(['Email already in use'])
         const passwordHash = await bcrypt.hash(password, 10) // Cifrado
         
         const newUser = new User({ //Crea un nuevo usuario con los datos recibidos con la contraseña cifrada, 
